@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- iPhone: sin API de pantalla completa, la unica forma de jugar sin barras
+         es "Anadir a pantalla de inicio". Estas dos etiquetas lo habilitan. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Super Michis" />
+    <meta name="theme-color" content="#000000" />
+    <!-- REVISION 16: version web (Vercel) instalable desde Safari con "Anadir a pantalla de inicio". -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <title>Super Michis Bros</title>
+    <style>
+      @font-face {
+        font-family: 'PressStart2P';
+        src: url('./fonts/PressStart2P-Regular-noliga.ttf') format('truetype');
+        font-display: block;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        /* En moviles la barra de direcciones cambia de alto: 100dvh sigue al
+           area realmente visible y evita el recorte de abajo. */
+        height: 100dvh;
+        width: 100%;
+        background: #000;
+        overflow: hidden;
+        touch-action: none;
+        overscroll-behavior: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+      /* REVISION 7: el lienzo ocupa TODA la pantalla. Antes se le dejaba un
+         margen por la muesca y eso creaba franjas negras; ahora el juego se
+         dibuja a sangre y son los botones del HUD los que respetan el margen
+         (y se pueden recolocar desde el editor de controles). */
+      #game {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      canvas {
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+        display: block;
+      }
+      /* Fuerza la carga de la fuente antes de que Phaser la use */
+      #font-preload {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        font-family: 'PressStart2P';
+        opacity: 0;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-QCbZnzlP.js"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <span id="font-preload">.</span>
+  </body>
+</html>
